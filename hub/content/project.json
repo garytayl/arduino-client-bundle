@@ -16,7 +16,7 @@
     {
       "status": "Today",
       "title": "Characterize one HW-870 sensor",
-      "body": "Photo identification confirms four-pin HW-870 reflective IR modules, not time-of-flight devices. Use the separate sensor-only bench page to observe raw DO and AO before choosing threshold or polarity."
+      "body": "Keep the HW-870 raw DO/AO test separate from the newly found CQRobot carrier’s ToF path. The carrier strongly matches VL53L1X CQRWX00744US; wiring and chip ID are not confirmed. Both bench sketches are uncompiled and hardware-untested here."
     },
     {
       "status": "Photo verified",

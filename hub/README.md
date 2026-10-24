@@ -33,6 +33,10 @@ The practical page is `https://stairs.layerlane.studio/#bench`, authored in `src
 
 The sketch is statically reviewed but uncompiled: no Arduino CLI/IDE backend or installed UNO R4 core was found in the inspected local toolchain locations. No hardware was accessed. A real UNO R4 WiFi compile and user-chosen upload remain separate from site/browser tests. See `../bench/README.md`. Keep private photos off the public site.
 
+## Separate ToF bench
+
+The new CQRobot carrier is a strong visual match for CQRWX00744US / VL53L1X, not a confirmed SKU or chip ID. Its independent page is `https://stairs.layerlane.studio/#tof` (`src/tof.html`). Source and validation notes are in `../bench/VL53L1X_ToF_Bench_v1/`. Build publishes `downloads/VL53L1X_ToF_Bench_v1.ino`. This preserves the HW-870 diagnostic and original firmware. It uses Pololu VL53L1X 1.3.1, with architecture metadata and Renesas Wire API checked; no board compile, flash or physical test is claimed. Wiring remains unconfirmed. No private photos are included.
+
 Read-only animation references: existing LayerLane `components/particles/ParticleStudio.tsx`, `ParticleCanvas.tsx` and `BrandParticleField.tsx`. Reused safe architectural patterns: isolated pointer-transparent background, capped pixel density, low-amplitude layered drift. The implementation uses Canvas 2D rather than bringing the React/WebGL application into this static project. No unrelated code, data or credentials were copied. Stars are capped at 200, drawn at at most 30fps, and stopped in hidden documents or reduced-motion mode. The motion control also pauses the decorative staircase animation.
 
 Browser API documentation consulted: [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) and [Page Visibility](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API). Deployment follows Vercel's [static files API workflow](https://vercel.com/docs/platforms/multi-project-platforms/reference).

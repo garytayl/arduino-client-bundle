@@ -11,6 +11,8 @@ const versions=[];
 await fs.mkdir(path.join(root,'dist/downloads'),{recursive:true});
 const benchSource=await fs.readFile(path.join(root,'../bench/HW870_Sensor_Bench_v1/HW870_Sensor_Bench_v1.ino'));
 await fs.writeFile(path.join(root,'dist/downloads/HW870_Sensor_Bench_v1.ino'),benchSource);
+const tofSource=await fs.readFile(path.join(root,'../bench/VL53L1X_ToF_Bench_v1/VL53L1X_ToF_Bench_v1.ino'));
+await fs.writeFile(path.join(root,'dist/downloads/VL53L1X_ToF_Bench_v1.ino'),tofSource);
 for(const v of data.versions){
   if(!/^[a-f0-9]{40}$/.test(v.commit)||!/^\w[\w.-]*\.ino$/.test(v.download))throw Error('Invalid version metadata');
   // Resolve each download from its pinned Git object, never from a moving working file.
@@ -21,7 +23,8 @@ for(const v of data.versions){
 }
 const notes=data.notes.map((n,i)=>`<article class="note"><span class="index">0${i+1}</span><div><span class="eyebrow">${escape(n.status)}</span><h2>${escape(n.title)}</h2><p>${escape(n.body)}</p></div></article>`).join('');
 const benchPage=await fs.readFile(path.join(root,'src/bench.html'),'utf8');
-await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
+const tofPage=await fs.readFile(path.join(root,'src/tof.html'),'utf8');
+await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replace('{{TOF}}',tofPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
 for(const file of ['styles.css','app.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
 await fs.copyFile(path.join(root,'vercel.json'),path.join(root,'dist/vercel.json'));
 console.log(`Built static hub: ${data.versions.length} verified firmware revision; downloads preserve original bytes.`);

@@ -49,15 +49,22 @@ try{
   await page.waitForTimeout(500);
   await page.screenshot({path:path.join(root,'evidence/bench-desktop.png'),fullPage:true});
   await page.keyboard.press('Escape');await page.locator('#home:not([hidden])').waitFor();
-  await page.locator('.bench-launch').click();await page.locator('#bench:not([hidden])').waitFor();
+  await page.locator('.bench-launch[href="#bench"]').click();await page.locator('#bench:not([hidden])').waitFor();
   await page.goBack();await page.locator('#home:not([hidden])').waitFor();
   pass('Bench entry, direct route, uncompiled notice, return navigation and exact sketch download');
+  await page.locator('.tof-launch').click();await page.locator('#tof:not([hidden])').waitFor();
+  assert.ok((await page.locator('#tof .notice').innerText()).includes('Uncompiled'));
+  const [tofDownload]=await Promise.all([page.waitForEvent('download'),page.locator('#tof a[download]').click()]);
+  assert.ok((await fs.readFile(await tofDownload.path())).equals(await fs.readFile(path.join(root,'../bench/VL53L1X_ToF_Bench_v1/VL53L1X_ToF_Bench_v1.ino'))));
+  await page.waitForTimeout(500);await page.screenshot({path:path.join(root,'evidence/tof-desktop.png'),fullPage:true});
+  await page.keyboard.press('Escape');await page.locator('#home:not([hidden])').waitFor();
+  pass('Separate ToF entry, uncompiled notice, exact diagnostic download and return');
   const hrefs=await page.locator('a[href]').evaluateAll(nodes=>[...new Set(nodes.map(n=>n.getAttribute('href')))]);
   for(const href of hrefs){if(href.startsWith('#'))assert.equal(await page.locator(href).count(),1);else if(!href.startsWith('http')){const r=await page.request.get(new URL(href,base).href);assert.equal(r.status(),200);}}
   pass('Every internal anchor and local asset resolves');
   for(const width of [320,375,390,768,1024,1440]){
     await page.setViewportSize({width,height:844});
-    for(const id of ['home','code','hardware','testing','notes','bench']){
+    for(const id of ['home','code','hardware','testing','notes','bench','tof']){
       await page.goto(base+'/#'+id);
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
       assert.equal(overflow,false,`${id} horizontal overflow at ${width}`);
@@ -69,6 +76,8 @@ try{
   await page.screenshot({path:path.join(root,'evidence/mobile.png'),fullPage:true});
   await page.goto(base+'/#bench');await page.waitForTimeout(500);
   await page.screenshot({path:path.join(root,'evidence/bench-mobile.png'),fullPage:true});
+  await page.goto(base+'/#tof');await page.waitForTimeout(500);
+  await page.screenshot({path:path.join(root,'evidence/tof-mobile.png'),fullPage:true});
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.waitForTimeout(150);
   const f1=await page.evaluate(()=>window.stairfieldMetrics.frames);await page.waitForTimeout(400);
