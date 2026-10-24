@@ -4,6 +4,10 @@ This repository contains the original Arduino sketches found in the author's loc
 
 ## Projects
 
+### Staircase project library
+
+The static project hub lives in [`hub/`](hub/README.md). It organizes verified code, signal assignments, testing expectations and next steps without modifying the original sketch. See its README for build and content-update instructions.
+
 ### Yvels Staircase v1
 
 An Arduino/FastLED prototype for a direction-aware RGB staircase. Two sensors determine travel direction and trigger blue-to-violet or magenta-to-orange LED animations.

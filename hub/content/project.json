@@ -1,0 +1,19 @@
+{
+  "title": "Yvel’s Staircase",
+  "verifiedOn": "2026-10-24",
+  "repository": "https://github.com/garytayl/arduino-client-bundle",
+  "versions": [{
+    "name": "Yvels Staircase v1",
+    "label": "Original prototype",
+    "commit": "85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7",
+    "date": "2026-08-31",
+    "path": "Yvels_Staircase_v1/Yvels_Staircase_v1.ino",
+    "download": "Yvels_Staircase_v1-85364d5.ino"
+  }],
+  "notes": [
+    {"status":"Next step", "title":"Identify the time-of-flight sensor", "body":"Yvel has a time-of-flight device. Record its exact model and board markings before selecting a library, voltage or wiring. None of those details are verified yet."},
+    {"status":"To confirm", "title":"Document the physical build", "body":"UNO R4 WiFi was previously reported as the board. The repository itself specifies only an Arduino-compatible board. Confirm the installed board, sensor models, strip length and power arrangement."},
+    {"status":"Proposed", "title":"Capture a bench-test record", "body":"Record the board, library version, wiring, expected result and observed result. Keep source inspection separate from a physical test pass."},
+    {"status":"Future consideration", "title":"Evaluate non-blocking animation", "body":"The current animations use delay(25), so loop() does not poll sensors while they play. A non-blocking design could be evaluated later; the original sketch is preserved."}
+  ]
+}
