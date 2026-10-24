@@ -32,6 +32,6 @@ const benchPage=await fs.readFile(path.join(root,'src/bench.html'),'utf8');
 const ledPage=await fs.readFile(path.join(root,'src/led.html'),'utf8');
 const tofPage=await fs.readFile(path.join(root,'src/tof.html'),'utf8');
 await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replace('{{TOF}}',tofPage).replace('{{LED}}',ledPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
-for(const file of ['styles.css','app.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
+for(const file of ['styles.css','guide.css','app.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
 await fs.copyFile(path.join(root,'vercel.json'),path.join(root,'dist/vercel.json'));
 console.log(`Built static hub: ${data.versions.length} verified firmware revision; downloads preserve original bytes.`);

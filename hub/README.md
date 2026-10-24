@@ -51,3 +51,8 @@ Browser API documentation consulted: [requestAnimationFrame](https://developer.m
 Current chapters: `#progress`, `#firmware`, `#roadmap`, `#layout`, `#parts`. The current downloadable source is `bench/releases/2026-10-24/ToF_Rainbow_Ripple_90_Smooth_v2.ino`, preserved byte for byte from the Mac's final uploaded version. The 60-pixel recovery ZIP is separate and unchanged. Neither is a 4–5 sensor implementation. The chosen next prototype uses a TCA9548A mux with one ToF per channel; installation gates remain untested.
 
 Amazon links were researched October 24, 2026. A bounded signed-out US browser check confirmed sensor $19.99 sold by CQRobot and jumper kit $6.98 sold by ELEGOO Official US, both in stock and shipped by Amazon. The specified Adafruit mux listing was currently unavailable, without a purchase price or seller. These are dated observations, not guaranteed offers or a checkout total. Keep the existing original source and published diagnostic downloads unchanged. `dist/site-version.json` records the Git commit built for live verification.
+
+
+## Linear guide (current presentation)
+
+The live page is now a single static read-only guide: progress → next visit → materials → multiplexer layout → installation planning → compact firmware/history links. It loads `guide.css` and no JavaScript. There is no chapter router, checklist or browser storage. Existing `app.js`, earlier HTML fragments and published download bytes remain preserved in the repository, but are not loaded into the current page. Edit the guide as project evidence changes. Use `test-guide.mjs` for the current page; `test.mjs` and `test-progress.mjs` describe the earlier UI.
