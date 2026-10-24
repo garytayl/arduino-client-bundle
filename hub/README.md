@@ -25,7 +25,13 @@ Never add house/network diagrams, addresses, device IPs, private access links, c
 
 ## Evidence and provenance
 
-Firmware reviewed on 2026-10-24: `85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7` (one repository commit, dated August 31, 2026). Board model is not identified by that source. UNO R4 WiFi is a prior project report, pending physical confirmation. Time-of-flight device model, interface, wiring and library are unknown. Original firmware is unchanged.
+Original firmware reviewed on 2026-10-24: `85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7` (one firmware revision, dated August 31, 2026). Board model is not identified by that source. Later project photo identification confirms UNO R4 WiFi and four-pin HW-870 reflective IR modules, not ToF devices. Inventory label ratings and unresolved electrical details are recorded in Hardware & Wiring. Original firmware is unchanged.
+
+## Separate sensor bench
+
+The practical page is `https://stairs.layerlane.studio/#bench`, authored in `src/bench.html`. Its separate source is `../bench/HW870_Sensor_Bench_v1/HW870_Sensor_Bench_v1.ino`; build copies it to `downloads/HW870_Sensor_Bench_v1.ino`. Do not silently change this v1 file after publication; add a new named diagnostic when needed. It is not part of the original staircase version history.
+
+The sketch is statically reviewed but uncompiled: no Arduino CLI/IDE backend or installed UNO R4 core was found in the inspected local toolchain locations. No hardware was accessed. A real UNO R4 WiFi compile and user-chosen upload remain separate from site/browser tests. See `../bench/README.md`. Keep private photos off the public site.
 
 Read-only animation references: existing LayerLane `components/particles/ParticleStudio.tsx`, `ParticleCanvas.tsx` and `BrandParticleField.tsx`. Reused safe architectural patterns: isolated pointer-transparent background, capped pixel density, low-amplitude layered drift. The implementation uses Canvas 2D rather than bringing the React/WebGL application into this static project. No unrelated code, data or credentials were copied. Stars are capped at 200, drawn at at most 30fps, and stopped in hidden documents or reduced-motion mode. The motion control also pauses the decorative staircase animation.
 

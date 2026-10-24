@@ -36,16 +36,28 @@ try{
   await page.waitForTimeout(500);
   await page.screenshot({path:path.join(root,'evidence/wiring.png'),fullPage:true});
   await page.goto(base+'/#code');
-  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('a[download]').click()]);
+  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('#code a[download]').click()]);
   const local=await fs.readFile(await download.path());
   const original=execFileSync('git',['show','85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7:Yvels_Staircase_v1/Yvels_Staircase_v1.ino'],{cwd:path.join(root,'..')});
   assert.ok(local.equals(original));pass('Browser firmware download matches original bytes');
+  await page.goto(base+'/#bench');
+  await page.locator('#bench:not([hidden])').waitFor();
+  assert.ok((await page.locator('#bench .notice').innerText()).includes('Uncompiled'));
+  const [benchDownload]=await Promise.all([page.waitForEvent('download'),page.locator('#bench a[download]').click()]);
+  const benchBytes=await fs.readFile(await benchDownload.path());
+  assert.ok(benchBytes.equals(await fs.readFile(path.join(root,'../bench/HW870_Sensor_Bench_v1/HW870_Sensor_Bench_v1.ino'))));
+  await page.waitForTimeout(500);
+  await page.screenshot({path:path.join(root,'evidence/bench-desktop.png'),fullPage:true});
+  await page.keyboard.press('Escape');await page.locator('#home:not([hidden])').waitFor();
+  await page.locator('.bench-launch').click();await page.locator('#bench:not([hidden])').waitFor();
+  await page.goBack();await page.locator('#home:not([hidden])').waitFor();
+  pass('Bench entry, direct route, uncompiled notice, return navigation and exact sketch download');
   const hrefs=await page.locator('a[href]').evaluateAll(nodes=>[...new Set(nodes.map(n=>n.getAttribute('href')))]);
   for(const href of hrefs){if(href.startsWith('#'))assert.equal(await page.locator(href).count(),1);else if(!href.startsWith('http')){const r=await page.request.get(new URL(href,base).href);assert.equal(r.status(),200);}}
   pass('Every internal anchor and local asset resolves');
   for(const width of [320,375,390,768,1024,1440]){
     await page.setViewportSize({width,height:844});
-    for(const id of ['home','code','hardware','testing','notes']){
+    for(const id of ['home','code','hardware','testing','notes','bench']){
       await page.goto(base+'/#'+id);
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
       assert.equal(overflow,false,`${id} horizontal overflow at ${width}`);
@@ -55,6 +67,8 @@ try{
   await page.setViewportSize({width:390,height:844});await page.goto(base);
   await page.waitForTimeout(500);
   await page.screenshot({path:path.join(root,'evidence/mobile.png'),fullPage:true});
+  await page.goto(base+'/#bench');await page.waitForTimeout(500);
+  await page.screenshot({path:path.join(root,'evidence/bench-mobile.png'),fullPage:true});
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.waitForTimeout(150);
   const f1=await page.evaluate(()=>window.stairfieldMetrics.frames);await page.waitForTimeout(400);
@@ -75,7 +89,9 @@ try{
   }pass('Measured mobile and desktop starfield draw cost below 8ms p95');
   assert.deepEqual(errors,[]);pass('No browser JavaScript errors');
   // Link verification uses actual HTTP responses and reports redirects/errors separately.
+  if(process.env.CHECK_EXTERNAL_LINKS!=='0'){
   for(const href of hrefs.filter(h=>h.startsWith('https://'))){const r=await page.request.get(href,{timeout:30000});report.links.push({url:href,status:r.status()});if(r.status()===429){console.log('RATE LIMITED '+href);continue;}assert.equal(r.status(),200,href);}
   pass(report.links.some(l=>l.status===429)?'External links checked; GitHub rate-limit responses recorded for follow-up':'All external project links return HTTP 200');
+  }else pass('External URLs deferred to production checks');
 }finally{await fs.writeFile(path.join(root,'evidence/report.json'),JSON.stringify(report,null,2));await browser.close();}
 console.log(JSON.stringify(report.performance));
