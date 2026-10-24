@@ -35,3 +35,19 @@ await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSION
 for(const file of ['styles.css','guide.css','app.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
 await fs.copyFile(path.join(root,'vercel.json'),path.join(root,'dist/vercel.json'));
 console.log(`Built static hub: ${data.versions.length} verified firmware revision; downloads preserve original bytes.`);
+
+// Four static documents, ordinary URLs and links; no client router or stored state.
+await fs.cp(path.join(root,'src/images'),path.join(root,'dist/images'),{recursive:true});
+const full=await fs.readFile(path.join(root,'dist/index.html'),'utf8');
+const main=full.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
+const section=id=>main.match(new RegExp('<section id="'+id+'"[\\s\\S]*?<\\/section>'))[0];
+const overview=main.slice(0,main.indexOf('<section id="next-visit"'));
+const pages=[{url:'/',file:'index.html',title:'Progress',body:overview+section('files')},{url:'/next-visit',file:'next-visit.html',title:'Next visit',body:section('next-visit')},{url:'/components',file:'components.html',title:'Components',body:section('materials')},{url:'/wiring',file:'wiring.html',title:'Wiring & layout',body:section('layout')+section('installation')}];
+for(const [i,p] of pages.entries()){
+ const nav='<nav aria-label="Project pages">'+pages.map((q,j)=>`<a href="${q.url}" ${i===j?'aria-current="page"':''}>${j+1}. ${q.title}</a>`).join('')+'</nav>';
+ const pager='<div class="page-turn" aria-label="Guide progression">'+(i?`<a class="button" href="${pages[i-1].url}">← Back: ${pages[i-1].title}</a>`:'<span></span>')+(i<3?`<a class="button primary" href="${pages[i+1].url}">Next: ${pages[i+1].title} →</a>`:'<a class="button" href="/">Back to progress ↑</a>')+'</div>';
+ let body=p.body.replace('href="#next-visit"','href="/next-visit"');
+ if(i)body=body.replace(/<h2>([\s\S]*?)<\/h2>/,'<h1>$1</h1>');
+ let html=full.replace(/<main[^>]*>[\s\S]*?<\/main>/,`<main id="main" tabindex="-1">${body}${pager}</main>`).replace(/<nav[\s\S]*?<\/nav>/,nav).replace('<title>Yvel’s Staircase — Progress & Next Visit</title>',`<title>${p.title} — Yvel’s Staircase</title>`).replace('href="#top"><svg','href="/"><svg');
+ await fs.writeFile(path.join(root,'dist',p.file),html);
+}

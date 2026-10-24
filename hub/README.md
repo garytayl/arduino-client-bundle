@@ -53,6 +53,10 @@ Current chapters: `#progress`, `#firmware`, `#roadmap`, `#layout`, `#parts`. The
 Amazon links were researched October 24, 2026. A bounded signed-out US browser check confirmed sensor $19.99 sold by CQRobot and jumper kit $6.98 sold by ELEGOO Official US, both in stock and shipped by Amazon. The specified Adafruit mux listing was currently unavailable, without a purchase price or seller. These are dated observations, not guaranteed offers or a checkout total. Keep the existing original source and published diagnostic downloads unchanged. `dist/site-version.json` records the Git commit built for live verification.
 
 
-## Linear guide (current presentation)
+## Current four-page guide
 
-The live page is now a single static read-only guide: progress → next visit → materials → multiplexer layout → installation planning → compact firmware/history links. It loads `guide.css` and no JavaScript. There is no chapter router, checklist or browser storage. Existing `app.js`, earlier HTML fragments and published download bytes remain preserved in the repository, but are not loaded into the current page. Edit the guide as project evidence changes. Use `test-guide.mjs` for the current page; `test.mjs` and `test-progress.mjs` describe the earlier UI.
+Static documents: `/` progress and compact recovery links → `/next-visit` → `/components` → `/wiring`. Each page has consistent navigation and Next/Back links; there is no client router, checklist or local state. `build.mjs` splits the maintained content in `src/index.html` into real HTML files. `serve.mjs` supports the clean URLs locally. Current browser QA is `test-guide.mjs`; earlier tests describe historical UI.
+
+The HiLetgo B06XXG5G3L offer replaces the unavailable Adafruit purchase recommendation. October 24 live offer check: In Stock, sold HiLetgo, ships Amazon; $6.99 displayed for This item, main offer requests cart confirmation. Seller specifications are distinguished from unverified board pull-ups and schematic. No checkout was performed. Product photos are exact listing assets, recorded in `src/images/provenance.json`, served locally and checked for successful decoding.
+
+Installation estimates assume 15–18 steps, 28 cm tread, 18 cm riser, 90 cm lit width, no landing, 1.5 m approach, 15% routing allowance and 0.3 m service length per sensor. They are examples, not a surveyed home plan or final order. The mux addresses collisions, not long-cable signaling. Actual power sizing and sensor link qualification remain installation gates. Firmware and recovery files remain unchanged.

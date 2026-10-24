@@ -4,32 +4,18 @@ const root=path.dirname(fileURLToPath(import.meta.url)),base=process.env.BASE_UR
 const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});
 const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));const checks=[];const pass=s=>{checks.push(s);console.log('PASS '+s)};
 await fs.mkdir(path.join(root,'evidence'),{recursive:true});
+const routes=['/','/next-visit','/components','/wiring'];
 try{
- const response=await page.goto(base);assert.equal(response.status(),200);
- const sections=await page.locator('main>section').evaluateAll(n=>n.map(e=>e.id));
- assert.deepEqual(sections,['progress','next-visit','materials','layout','installation','files']);
- assert.equal(await page.locator('script,input,button,.view,.chapter-grid').count(),0);
- assert.equal(await page.locator('h1').count(),1);
- pass('One read-only linear guide, six visible sections, no router, scripts, checklist or buttons');
- for(const id of sections)assert.ok(await page.locator('#'+id).isVisible());
- await page.locator('nav a[href="#materials"]').click();assert.ok((await page.url()).endsWith('#materials'));
- assert.ok(await page.locator('#progress').isVisible());pass('Anchor jumps keep all content available in one scroll');
- await page.locator('#materials details').first().locator('summary').click();assert.ok((await page.locator('#materials').innerText()).includes('Fluke 324'));
- await page.locator('#materials .parts-grid details').last().locator('summary').click();
- const needed=await page.locator('#materials .parts-grid').innerText();for(const t of ['3–4','$19.99','CQRobot','2717','Currently unavailable','headers'])assert.ok(needed.includes(t),t);
- assert.equal(await page.locator('a[href^="https://www.amazon.com/dp/"]').count(),2);assert.ok(!(await page.locator('body').innerText()).includes('Also pack'));
- await page.locator('#materials .parts-grid details').last().locator('summary').click();
- pass('Tailored owned inventory and two actionable buying recommendations; no duplicate jumper/tool list');
- const anchors=await page.locator('a[href^="#"]').evaluateAll(n=>n.map(e=>e.getAttribute('href')));for(const id of anchors)assert.equal(await page.locator(id).count(),1,id);
- const downloads=await page.locator('a[download]').evaluateAll(n=>n.map(e=>e.getAttribute('href')));
- for(const f of downloads){const res=await page.request.get(new URL(f,base).href);assert.equal(res.status(),200,f);assert.ok((await res.body()).equals(await fs.readFile(path.join(root,'dist',f))),f)}
- const original=await page.request.get(base+'/downloads/Yvels_Staircase_v1-85364d5.ino');assert.ok((await original.body()).equals(execFileSync('git',['show','85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7:Yvels_Staircase_v1/Yvels_Staircase_v1.ino'],{cwd:path.join(root,'..')})));
- pass('Internal anchors and all six firmware/recovery downloads resolve; byte integrity preserved');
- assert.ok(await page.locator('svg[role="img"] title').count());assert.ok(await page.locator('svg[role="img"] desc').count());pass('Mux diagram has accessible title, description and text explanation');
- for(const width of [320,375,390,768,1024,1440]){await page.setViewportSize({width,height:1000});await page.goto(base);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);for(const id of sections)assert.ok(await page.locator('#'+id).isVisible());}
- pass('Full linear content fits six mobile/tablet/desktop widths');
- for(const width of [390,1440]){await page.setViewportSize({width,height:1000});await page.goto(base);await page.screenshot({path:path.join(root,`evidence/guide-${width}.png`),fullPage:true});}
- await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('html').evaluate(el=>getComputedStyle(el).scrollBehavior),'auto');assert.deepEqual(errors,[]);pass('Reduced motion respected; no browser errors');
- const noJs=await browser.newPage({javaScriptEnabled:false});await noJs.goto(base);assert.ok(await noJs.locator('#layout').isVisible());assert.ok(await noJs.locator('#materials').isVisible());await noJs.close();pass('Guide remains fully readable with JavaScript disabled');
+ for(const route of routes){const res=await page.goto(base+route);assert.equal(res.status(),200,route);assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('script,input,button').count(),0);assert.equal(await page.locator('nav a').count(),4);assert.equal(await page.locator('nav a[aria-current="page"]').count(),1);await page.reload();assert.equal(await page.locator('h1').count(),1);}
+ pass('Four static pages load directly and reload, consistent active navigation, no app state');
+ await page.goto(base);for(const route of routes.slice(1)){await page.locator('.page-turn .primary').click();assert.equal(new URL(page.url()).pathname,route);}await page.goBack();assert.equal(new URL(page.url()).pathname,'/components');await page.locator('.page-turn a').first().click();assert.equal(new URL(page.url()).pathname,'/next-visit');pass('Next, Back and browser history follow the four-page progression');
+ await page.goto(base+'/components');assert.equal(await page.locator('.parts-grid>article').count(),2);const text=await page.locator('#materials').innerText();for(const t of ['3–4','$19.99','HiLetgo','$6.99','In Stock','not an audited'])assert.ok((await page.locator('#materials').textContent()).includes(t),t);
+ assert.equal(await page.locator('.product-photo img').count(),2);for(const img of await page.locator('.product-photo img').all()){assert.ok(await img.getAttribute('alt'));assert.ok(await img.evaluate(el=>el.complete&&el.naturalWidth>300));}pass('Shareable components page has quantities, two real loaded listing photos, dated offers and seller-spec limits');
+ await page.goto(base+'/wiring');assert.equal(await page.locator('svg[role="img"] title').count(),2);assert.equal(await page.locator('svg[role="img"] desc').count(),2);const plan=await page.locator('#installation').textContent();for(const t of ['8–9 m','10–12 m','13.5–16.2','20–23 m','31–35 m','not surveyed','50 W','100 kHz'])assert.ok(plan.includes(t),t);pass('Two accessible wiring diagrams, provisional route table, load and bus qualification');
+ await page.goto(base);const downloads=await page.locator('a[download]').evaluateAll(n=>n.map(e=>e.getAttribute('href')));assert.equal(downloads.length,6);for(const f of downloads){const res=await page.request.get(new URL(f,base).href);assert.equal(res.status(),200);assert.ok((await res.body()).equals(await fs.readFile(path.join(root,'dist',f))));}const original=await page.request.get(base+'/downloads/Yvels_Staircase_v1-85364d5.ino');assert.ok((await original.body()).equals(execFileSync('git',['show','85364d5ed86d84dd3bd02fcd5e1f1753636ce0e7:Yvels_Staircase_v1/Yvels_Staircase_v1.ino'],{cwd:path.join(root,'..')})));pass('All six downloads resolve and preserve bytes, including original Git source');
+ for(const width of [320,375,390,768,1024,1440])for(const route of routes){await page.setViewportSize({width,height:1000});await page.goto(base+route);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,route+' overflow '+width);}
+ pass('All four pages fit six mobile/tablet/desktop widths');
+ for(const width of [390,1440])for(const route of routes){await page.setViewportSize({width,height:1000});await page.goto(base+route);await page.screenshot({path:path.join(root,`evidence/guide-${route.slice(1)||'overview'}-${width}.png`),fullPage:true});}
+ await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('html').evaluate(el=>getComputedStyle(el).scrollBehavior),'auto');assert.deepEqual(errors,[]);const noJs=await browser.newPage({javaScriptEnabled:false});for(const route of routes){await noJs.goto(base+route);assert.ok(await noJs.locator('h1').isVisible());}await noJs.close();pass('No browser errors; reduced motion and JavaScript-disabled reading work');
  const version=await(await page.request.get(base+'/site-version.json')).json();await fs.writeFile(path.join(root,'evidence/guide-checks.json'),JSON.stringify({base,checks,version},null,2));console.log(JSON.stringify({version}));
 }finally{await browser.close()}
