@@ -79,3 +79,9 @@ motion.addEventListener('change',sync);
 document.addEventListener('visibilitychange',sync);
 let resizeFrame=0;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(resize);},{passive:true});
 resize();sync();
+
+for(const input of document.querySelectorAll('[data-check]')){
+ const key='stairs-visit-'+input.dataset.check;
+ try{input.checked=localStorage.getItem(key)==='true';}catch{}
+ input.addEventListener('change',()=>{try{localStorage.setItem(key,String(input.checked));}catch{}});
+}

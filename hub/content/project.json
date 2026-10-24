@@ -1,5 +1,5 @@
 {
-  "title": "Yvel’s Staircase",
+  "title": "Yvel\u2019s Staircase",
   "verifiedOn": "2026-10-24",
   "repository": "https://github.com/garytayl/arduino-client-bundle",
   "versions": [
@@ -14,24 +14,24 @@
   ],
   "notes": [
     {
-      "status": "Today",
-      "title": "Characterize one HW-870 sensor",
-      "body": "Keep the HW-870 raw DO/AO test separate from the newly found CQRobot carrier’s ToF path. The carrier strongly matches VL53L1X CQRWX00744US; wiring and chip ID are not confirmed. Both bench sketches are uncompiled and hardware-untested here."
+      "status": "Next visit",
+      "title": "Four to five sensors with LEDs",
+      "body": "Use the selected multiplexer architecture. Bring channels up individually, then prove the complete 4\u20135 sensor group with valid readings, stable resets and the intended LED behavior."
     },
     {
-      "status": "Photo verified",
-      "title": "Confirm the remaining electrical details",
-      "body": "UNO R4 WiFi, HW-870 modules and strip/adapter label ratings are identified. Strip input arrow, connector polarity and the final LED power arrangement still need verification."
+      "status": "Before installation",
+      "title": "Measure and mock up the layout",
+      "body": "Choose presence, ordered direction or step coverage. Survey the route and test sensor views, diffusers, removable mounts and an accessible controller location."
     },
     {
-      "status": "Proposed",
-      "title": "Capture a bench-test record",
-      "body": "Record the board, library version, wiring, expected result and observed result. Keep source inspection separate from a physical test pass."
+      "status": "Design gate",
+      "title": "Power and cable runs need evidence",
+      "body": "Use the actual strip load and measured lengths to design wire, protection and injection. Validate I\u00b2C timing at intended cable lengths; a mux does not guarantee long-distance communication."
     },
     {
-      "status": "Future consideration",
-      "title": "Evaluate non-blocking animation",
-      "body": "The current animations use delay(25), so loop() does not poll sensors while they play. A non-blocking design could be evaluated later; the original sketch is preserved."
+      "status": "Preserved",
+      "title": "Keep current firmware and recovery distinct",
+      "body": "The 90-pixel smooth rainbow ripple is the current single-sensor bench. The 60-pixel combined recovery bundle, original firmware and standalone diagnostics remain separate."
     }
   ]
 }

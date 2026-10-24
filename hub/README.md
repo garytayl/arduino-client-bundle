@@ -44,3 +44,10 @@ Browser API documentation consulted: [requestAnimationFrame](https://developer.m
 ## Browser checks
 
 `test.mjs` uses Playwright and an isolated headless Edge profile. Install/use Playwright from an approved local toolchain, set `NODE_PATH` to that toolchain if needed, then run `node hub/test.mjs` while the local server is running. Set `BASE_URL` for deployed checks. No existing browser session is used or closed. Tests cover chapters, heading focus, keyboard navigation, Escape, browser Back/Forward, local links, actual firmware download byte integrity, external URLs, six responsive widths, motion control, reduced motion and measured canvas draw cost. Screenshots and JSON results are in ignored `hub/evidence/`.
+
+
+## October 24 combined bench and next visit
+
+Current chapters: `#progress`, `#firmware`, `#roadmap`, `#layout`, `#parts`. The current downloadable source is `bench/releases/2026-10-24/ToF_Rainbow_Ripple_90_Smooth_v2.ino`, preserved byte for byte from the Mac's final uploaded version. The 60-pixel recovery ZIP is separate and unchanged. Neither is a 4–5 sensor implementation. The chosen next prototype uses a TCA9548A mux with one ToF per channel; installation gates remain untested.
+
+Amazon links were researched October 24, 2026; seller, price and current stock could not be established reliably. Do not add invented offers or checkout totals. Keep the existing original source and published diagnostic downloads unchanged. `dist/site-version.json` records the Git commit built for live verification.
