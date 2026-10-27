@@ -1,0 +1,487 @@
+{
+  "updated": "2026-10-27",
+  "generation": "AI-generated illustrative concepts",
+  "concepts": [
+    {
+      "id": "warm-night",
+      "title": "Warm nighttime staircase",
+      "category": "lighting",
+      "caption": "Warm under-tread light, seen looking up the stairs.",
+      "alt": "Generated nighttime concept looking up carpeted stairs with warm under-tread lighting and a wooden handrail.",
+      "series": "current",
+      "number": "01",
+      "libraryFileId": "libfile_40dbc244ad088191b76a173e6b78e3d7",
+      "sourceFile": "01-warm-night.png",
+      "width": 941,
+      "height": 1672,
+      "sourceSha256": "08111fb5be1098bf915092de4ea89ecd690336ad07828870ca1f75cc836871de",
+      "assets": {
+        "320": {
+          "file": "warm-night-320.webp",
+          "width": 320,
+          "height": 569,
+          "bytes": 17092,
+          "sha256": "81881863ae19f80ac639996bdde755129d5f111f2a9a9eca659a31cb0cc18cca"
+        },
+        "640": {
+          "file": "warm-night-640.webp",
+          "width": 640,
+          "height": 1137,
+          "bytes": 57442,
+          "sha256": "b11f39904d7d286d483ea431be0ca5e8b0431f184e7f66ce31642d9ff57d812b"
+        },
+        "1600": {
+          "file": "warm-night-1600.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 173980,
+          "sha256": "b17a61b8b2be76c6156f63578ba577e5056db961bf0a2985488c95b57801b9d4"
+        }
+      }
+    },
+    {
+      "id": "daytime-railing",
+      "title": "Daytime railing perspective",
+      "category": "lighting",
+      "caption": "A daylight perspective for comparing the lighting against the railing.",
+      "alt": "Generated oblique daytime view of carpeted stairs, a wooden handrail and warm linear lighting.",
+      "series": "current",
+      "number": "02",
+      "libraryFileId": "libfile_4f4ba0b1f70c8191b9f8fe3eede54ea1",
+      "sourceFile": "02-daytime-side-angle.png",
+      "width": 1448,
+      "height": 1086,
+      "sourceSha256": "72ddbb00757d76962211a077a453b06dfcec0e4c126c9f56615d695307c91015",
+      "assets": {
+        "320": {
+          "file": "daytime-railing-320.webp",
+          "width": 320,
+          "height": 240,
+          "bytes": 7774,
+          "sha256": "e4231423c29f111fc6a288459627eea15682f27be3e666c2398719989052d5ec"
+        },
+        "640": {
+          "file": "daytime-railing-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 25460,
+          "sha256": "ccf6007bd70c8eba7d0932f99ce6450bd865b51777c5b2bc3d391a5d2b34dfac"
+        },
+        "1600": {
+          "file": "daytime-railing-1600.webp",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 190026,
+          "sha256": "3b017eedf57667304d362c25effe81eef399fcc9e06a23a29621a8141fb7a881"
+        }
+      }
+    },
+    {
+      "id": "neutral-white",
+      "title": "Neutral-white alternative",
+      "category": "lighting",
+      "caption": "A wall-light alternative to compare with the warmer linear treatment.",
+      "alt": "Generated staircase concept with neutral-white wall lights beside carpeted steps and a wooden handrail.",
+      "series": "current",
+      "number": "03",
+      "libraryFileId": "libfile_9c505a23457081918dfb34d86b04cfb9",
+      "sourceFile": "03-neutral-white-alternative.png",
+      "width": 1448,
+      "height": 1086,
+      "sourceSha256": "0dd1cd69e2bdf28ae9818100ce81e434dffc4b2dae36085af24412fe6ee74f87",
+      "assets": {
+        "320": {
+          "file": "neutral-white-320.webp",
+          "width": 320,
+          "height": 240,
+          "bytes": 8658,
+          "sha256": "3662c2332871bf621832255e300e1f7c5887ef78dc4b12030df1a7faa68bc746"
+        },
+        "640": {
+          "file": "neutral-white-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 32736,
+          "sha256": "05b16916c7ef9b856a10720e563198bce8ba707dbf66eb51376b730bf2ef6d58"
+        },
+        "1600": {
+          "file": "neutral-white-1600.webp",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 206242,
+          "sha256": "29121f52f78751be8d5dfc358ee5016a09545b6ceebbf9461aa0e02012a53f1d"
+        }
+      }
+    },
+    {
+      "id": "under-nosing",
+      "title": "Under-nosing diffuser",
+      "category": "lighting",
+      "caption": "A diffuser beneath the nosing; fixing and clearance need an on-site check.",
+      "alt": "Generated close-up of a warm LED diffuser below a carpeted stair nosing.",
+      "series": "current",
+      "number": "04",
+      "libraryFileId": "libfile_17a56fdffb88819180014ff183223164",
+      "sourceFile": "04-under-nosing-detail.png",
+      "width": 1536,
+      "height": 1024,
+      "sourceSha256": "6eab6a8a072f9c88a145a6a5fed0b7bb33d8f0c3f4f077547734a0fdfe55e40f",
+      "assets": {
+        "320": {
+          "file": "under-nosing-320.webp",
+          "width": 320,
+          "height": 213,
+          "bytes": 13610,
+          "sha256": "942edb8ebb997eb37c3f2b9be071d3e1f5dac21b01c51db9c34128fefea21d83"
+        },
+        "640": {
+          "file": "under-nosing-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 45820,
+          "sha256": "1cc488fa93e7b3744c5007de5342fe94e6923e7fd7b2ebb61eee4630f91b540f"
+        },
+        "1600": {
+          "file": "under-nosing-1600.webp",
+          "width": 1536,
+          "height": 1024,
+          "bytes": 239708,
+          "sha256": "356e29a0040384d78225daaa08703fd110a7293910e4d1fec579a15c64a28a5a"
+        }
+      }
+    },
+    {
+      "id": "side-trim",
+      "title": "Side-trim lighting",
+      "category": "lighting",
+      "caption": "An alternative light position along the side trim.",
+      "alt": "Generated close-up of linear warm lighting along wooden side trim beside carpeted stairs.",
+      "series": "current",
+      "number": "05",
+      "libraryFileId": "libfile_2c7e0973bf0c8191839f33b8fce217b4",
+      "sourceFile": "05-side-trim-detail.png",
+      "width": 1536,
+      "height": 1024,
+      "sourceSha256": "a5382c1391204ad910e1c02b9e718c23778fb5252edcadab45b4c8318f5e4caa",
+      "assets": {
+        "320": {
+          "file": "side-trim-320.webp",
+          "width": 320,
+          "height": 213,
+          "bytes": 11690,
+          "sha256": "5178249d7d7840874027d7407e64f61116fc10a2defaa3c406967a407051cc2e"
+        },
+        "640": {
+          "file": "side-trim-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 42784,
+          "sha256": "a85988bb8de959decaf331ddc89332c84215d8e5890f498502e2280dffcc194d"
+        },
+        "1600": {
+          "file": "side-trim-1600.webp",
+          "width": 1536,
+          "height": 1024,
+          "bytes": 233360,
+          "sha256": "75370d2c8e08087557db39f21a5ed311899e7cb6512cf20a8a031d216e01407d"
+        }
+      }
+    },
+    {
+      "id": "sensor-housing",
+      "title": "Sensor housing detail",
+      "category": "sensors",
+      "caption": "A housing and cable-exit idea; mounting dimensions remain unverified.",
+      "alt": "Generated concept of a small white sensor housing near a stair tread with its cable routed upward.",
+      "series": "current",
+      "number": "06",
+      "libraryFileId": "libfile_e981b19a8c4c8191a1ebe333c9d7a93b",
+      "sourceFile": "06-sensor-housing-detail.png",
+      "width": 1536,
+      "height": 1024,
+      "sourceSha256": "d3ffca2b6dd41d58e4efcac84a4e425a4c4bc5ef703ebcd2d1079d4174e6805c",
+      "assets": {
+        "320": {
+          "file": "sensor-housing-320.webp",
+          "width": 320,
+          "height": 213,
+          "bytes": 9486,
+          "sha256": "cdd0aee678b44275217e672243eb82f353060ae8bdbb574b9e148fcbf80b131c"
+        },
+        "640": {
+          "file": "sensor-housing-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 25524,
+          "sha256": "c7bea417a1d3c7d5e3d9ee2eebbbc72e9748d942d5607ac0733b4c54ecf6170c"
+        },
+        "1600": {
+          "file": "sensor-housing-1600.webp",
+          "width": 1536,
+          "height": 1024,
+          "bytes": 117212,
+          "sha256": "b7ae6947778a47c5f49f0fd5abf87b3bce261e6b55e0686c280f09cf50db1fc9"
+        }
+      }
+    },
+    {
+      "id": "sensor-aiming",
+      "title": "Illustrative sensor aiming",
+      "category": "sensors",
+      "caption": "The shaded beam is not measured or verified sensor coverage.",
+      "alt": "Generated concept of a sensor aimed across a tread with an illustrative shaded beam, not a measured coverage zone.",
+      "series": "current",
+      "number": "07",
+      "libraryFileId": "libfile_cbe3dbfce338819197c741706c993572",
+      "sourceFile": "07-sensor-aiming-overlay.png",
+      "width": 1536,
+      "height": 1024,
+      "sourceSha256": "56e5f4d6a64b110d581b983a40e290859734beb7de459338fc0b2694117e91cf",
+      "assets": {
+        "320": {
+          "file": "sensor-aiming-320.webp",
+          "width": 320,
+          "height": 213,
+          "bytes": 11622,
+          "sha256": "248f607c7f9582f52848eff6836524d3adf455222f06fca99476a53e52aea6a1"
+        },
+        "640": {
+          "file": "sensor-aiming-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41422,
+          "sha256": "9d2d094f5ed6ea1714398193a71dc46e7d5f70f914d3c6fe81f38f593eb997fe"
+        },
+        "1600": {
+          "file": "sensor-aiming-1600.webp",
+          "width": 1536,
+          "height": 1024,
+          "bytes": 229754,
+          "sha256": "c68465bb7f9df412cc4b790f2a7087a295c9ff8c4dccd3ac81de0253826a7a29"
+        }
+      }
+    },
+    {
+      "id": "closed-controller",
+      "title": "Closed controller placement",
+      "category": "enclosure",
+      "caption": "An accessible enclosure position concept; outlet and access are unverified.",
+      "alt": "Generated concept of a closed white controller enclosure beside stairs with surface cable routing.",
+      "series": "current",
+      "number": "08",
+      "libraryFileId": "libfile_1d7d2a37577081919005285d666a1379",
+      "sourceFile": "08-controller-placement.png",
+      "width": 941,
+      "height": 1672,
+      "sourceSha256": "42d5a120cf5a5f10d4a71b8e173487dd78e97e98b2accbbaee759de77575ad35",
+      "assets": {
+        "320": {
+          "file": "closed-controller-320.webp",
+          "width": 320,
+          "height": 569,
+          "bytes": 21612,
+          "sha256": "46fa010e04e15d6a4710000d9b2048331136179c6414547a72b9e67373f4de95"
+        },
+        "640": {
+          "file": "closed-controller-640.webp",
+          "width": 640,
+          "height": 1137,
+          "bytes": 73622,
+          "sha256": "226fc9d9664e908bb53251e1c32ccf2ec79308e9501533286a526b352ae25503"
+        },
+        "1600": {
+          "file": "closed-controller-1600.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 201706,
+          "sha256": "7833a52163a805734c699008f0911720628c4f890641288323650a7dc4be968f"
+        }
+      }
+    },
+    {
+      "id": "open-controller",
+      "title": "Inside the controller enclosure",
+      "category": "enclosure",
+      "caption": "Arduino and two mux boards as a packaging study, not pin-level wiring.",
+      "alt": "Generated open enclosure concept containing an Arduino-style board, two multiplexer-style boards and connectors; not an electrical wiring diagram.",
+      "series": "current",
+      "number": "09",
+      "libraryFileId": "libfile_af8241a6fe088191b7e61eace559a7d3",
+      "sourceFile": "09-controller-interior.png",
+      "width": 1448,
+      "height": 1086,
+      "sourceSha256": "9a91a159c9ae551528075d8f7189a2a3bd7c1bccb146b2140634de7121dadf8d",
+      "assets": {
+        "320": {
+          "file": "open-controller-320.webp",
+          "width": 320,
+          "height": 240,
+          "bytes": 14928,
+          "sha256": "d82367c63171586fcd1e5412c8c3677e3f8b4c433c7fcea34c44d02ea148969b"
+        },
+        "640": {
+          "file": "open-controller-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 45382,
+          "sha256": "8b387156228b5fff233c2c5fb3f8215c433130ce691eed66163896b4acd59239"
+        },
+        "1600": {
+          "file": "open-controller-1600.webp",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 202962,
+          "sha256": "9b4c2037a2f6de6d4a5df49c3d5f60437f042494ede9f37ac92a479c29f1f527"
+        }
+      }
+    },
+    {
+      "id": "raceway-connector",
+      "title": "Raceway and connector detail",
+      "category": "cabling",
+      "caption": "A covered branch and service connector idea; cable sizes are not specified.",
+      "alt": "Generated close-up of white surface raceway branching to a cable connector beside a carpeted step.",
+      "series": "current",
+      "number": "10",
+      "libraryFileId": "libfile_cf1c5abb06d8819180444571efdbf27a",
+      "sourceFile": "10-raceway-branch-detail.png",
+      "width": 1448,
+      "height": 1086,
+      "sourceSha256": "62ed5fb6ac33c88eadc8d958b55f858af2e11967d5fc841e84f15d91f9c222cf",
+      "assets": {
+        "320": {
+          "file": "raceway-connector-320.webp",
+          "width": 320,
+          "height": 240,
+          "bytes": 10852,
+          "sha256": "330f54217183cc6ad2bc80cae5eb81701b326d555198efb8590bba444cd11f87"
+        },
+        "640": {
+          "file": "raceway-connector-640.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 33538,
+          "sha256": "28c7127659ce2caf6cefed368448a111c868f632864d7872e3e8fbdebb502cfd"
+        },
+        "1600": {
+          "file": "raceway-connector-1600.webp",
+          "width": 1448,
+          "height": 1086,
+          "bytes": 156498,
+          "sha256": "2f4c15be722941459812544c20453f81c370a73feda8ab70e372c0669a58bac7"
+        }
+      }
+    },
+    {
+      "id": "earlier-surface",
+      "title": "Surface raceway study",
+      "category": "cabling",
+      "caption": "Earlier annotated route study. Drawn board labels and pins are illustrative only.",
+      "alt": "Earlier generated annotated staircase study showing surface raceway and an enclosure cutaway, not measured installation instructions.",
+      "series": "earlier",
+      "number": "E1",
+      "libraryFileId": "libfile_fd80dd71c5dc8191bf54a943c62f0c2b",
+      "sourceFile": "yvel-stairs-01-surface-raceway.png",
+      "width": 941,
+      "height": 1672,
+      "sourceSha256": "3d60ec6a00c6eccb8027cbfb11b03df65c3a33836276dd029e4f5116de9a12dd",
+      "assets": {
+        "320": {
+          "file": "earlier-surface-320.webp",
+          "width": 320,
+          "height": 569,
+          "bytes": 23954,
+          "sha256": "705bc15ec6355af9b337dd62cc60cbae5b8692c82ba4b584e06c64926b368808"
+        },
+        "640": {
+          "file": "earlier-surface-640.webp",
+          "width": 640,
+          "height": 1137,
+          "bytes": 77750,
+          "sha256": "ddc32601c8dd555d50dad67fd022be4d57af1db00e83e20539680b87d0321ab6"
+        },
+        "1600": {
+          "file": "earlier-surface-1600.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 191426,
+          "sha256": "41f2ac33b6d8e5cfdc988be78d9846baa3ed276e90dc31db503e3754549be426"
+        }
+      }
+    },
+    {
+      "id": "earlier-concealed",
+      "title": "Conditional concealed route",
+      "category": "cabling",
+      "caption": "Earlier alternative, conditional on underside access and a survey of hidden utilities.",
+      "alt": "Earlier generated annotated staircase concept showing a conditional concealed cable route and controller layout.",
+      "series": "earlier",
+      "number": "E2",
+      "libraryFileId": "libfile_5cc35b00cd448191b3bce6721c635904",
+      "sourceFile": "yvel-stairs-02-concealed-route-conditional.png",
+      "width": 1024,
+      "height": 1536,
+      "sourceSha256": "803bae8d124c97124073d22419f9381544c6f10ebb1e915dba11986e07841464",
+      "assets": {
+        "320": {
+          "file": "earlier-concealed-320.webp",
+          "width": 320,
+          "height": 480,
+          "bytes": 21026,
+          "sha256": "3dc2845cbc012893047cf6c9d103692276551f2c24c513e89a2876e31962eb63"
+        },
+        "640": {
+          "file": "earlier-concealed-640.webp",
+          "width": 640,
+          "height": 960,
+          "bytes": 67852,
+          "sha256": "424734682f029cbf0c8a0a7f7c6001ef9a15b7aeaf8ad547f8a8d2763f57047c"
+        },
+        "1600": {
+          "file": "earlier-concealed-1600.webp",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 193838,
+          "sha256": "ee28d4a2263ed7a34ec76fae5e29a73480c3b5413dd6e39f68fc5f0bc7a00084"
+        }
+      }
+    },
+    {
+      "id": "earlier-pilot",
+      "title": "Removable pilot study",
+      "category": "sensors",
+      "caption": "Earlier reversible-pilot idea, not an installed or tested arrangement.",
+      "alt": "Earlier generated annotated concept showing a small removable lighting and sensor pilot on a staircase.",
+      "series": "earlier",
+      "number": "E3",
+      "libraryFileId": "libfile_80472d863d70819182e393e9b165b65c",
+      "sourceFile": "yvel-stairs-03-removable-pilot.png",
+      "width": 941,
+      "height": 1672,
+      "sourceSha256": "d6c9e655a35efdf2c54bc3849f28f7288d4a9727e1ff67665e943299847d1032",
+      "assets": {
+        "320": {
+          "file": "earlier-pilot-320.webp",
+          "width": 320,
+          "height": 569,
+          "bytes": 24986,
+          "sha256": "77a5f1ca56038f2315b4504c50b1777cd728ae695b512682d40646a89228594b"
+        },
+        "640": {
+          "file": "earlier-pilot-640.webp",
+          "width": 640,
+          "height": 1137,
+          "bytes": 75880,
+          "sha256": "cd10a6cc78f1226a1d1154f91c167427ebd527d52f2332f4c9d43224c6abf091"
+        },
+        "1600": {
+          "file": "earlier-pilot-1600.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 183302,
+          "sha256": "355eb8e4f2edc38b48729c3e462b90ca02047b50ce6651b969d5a8078e6e3979"
+        }
+      }
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {renderGallery} from './gallery.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 const data=JSON.parse(await fs.readFile(path.join(root,'content/project.json'),'utf8'));
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -32,22 +33,24 @@ const benchPage=await fs.readFile(path.join(root,'src/bench.html'),'utf8');
 const ledPage=await fs.readFile(path.join(root,'src/led.html'),'utf8');
 const tofPage=await fs.readFile(path.join(root,'src/tof.html'),'utf8');
 await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replace('{{TOF}}',tofPage).replace('{{LED}}',ledPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
-for(const file of ['styles.css','guide.css','app.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
+for(const file of ['styles.css','guide.css','app.js','gallery.css','gallery.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
 await fs.copyFile(path.join(root,'vercel.json'),path.join(root,'dist/vercel.json'));
 console.log(`Built static hub: ${data.versions.length} verified firmware revision; downloads preserve original bytes.`);
 
-// Four static documents, ordinary URLs and links; no client router or stored state.
+// Five static documents with ordinary URLs; only the gallery has optional progressive enhancement.
 await fs.cp(path.join(root,'src/images'),path.join(root,'dist/images'),{recursive:true});
 const full=await fs.readFile(path.join(root,'dist/index.html'),'utf8');
 const main=full.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
 const section=id=>main.match(new RegExp('<section id="'+id+'"[\\s\\S]*?<\\/section>'))[0];
 const overview=main.slice(0,main.indexOf('<section id="next-visit"'));
-const pages=[{url:'/',file:'index.html',title:'Progress',body:overview+section('files')},{url:'/next-visit',file:'next-visit.html',title:'Next visit',body:section('next-visit')},{url:'/components',file:'components.html',title:'Components',body:section('materials')},{url:'/wiring',file:'wiring.html',title:'Wiring & layout',body:section('layout')+section('installation')}];
+const conceptData=JSON.parse(await fs.readFile(path.join(root,'content/concepts.json'),'utf8'));
+const pages=[{url:'/',file:'index.html',title:'Progress',body:overview+section('files')},{url:'/next-visit',file:'next-visit.html',title:'Next visit',body:section('next-visit')},{url:'/components',file:'components.html',title:'Components',body:section('materials')},{url:'/wiring',file:'wiring.html',title:'Wiring & layout',body:section('layout')+section('installation')},{url:'/concepts',file:'concepts.html',title:'Concept gallery',body:renderGallery(conceptData)}];
 for(const [i,p] of pages.entries()){
  const nav='<nav aria-label="Project pages">'+pages.map((q,j)=>`<a href="${q.url}" ${i===j?'aria-current="page"':''}>${j+1}. ${q.title}</a>`).join('')+'</nav>';
- const pager='<div class="page-turn" aria-label="Guide progression">'+(i?`<a class="button" href="${pages[i-1].url}">← Back: ${pages[i-1].title}</a>`:'<span></span>')+(i<3?`<a class="button primary" href="${pages[i+1].url}">Next: ${pages[i+1].title} →</a>`:'<a class="button" href="/">Back to progress ↑</a>')+'</div>';
+ const pager='<div class="page-turn" aria-label="Guide progression">'+(i?`<a class="button" href="${pages[i-1].url}">← Back: ${pages[i-1].title}</a>`:'<span></span>')+(i<pages.length-1?`<a class="button primary" href="${pages[i+1].url}">Next: ${pages[i+1].title} →</a>`:'<a class="button" href="/">Back to progress ↑</a>')+'</div>';
  let body=p.body.replace('href="#next-visit"','href="/next-visit"');
- if(i)body=body.replace(/<h2>([\s\S]*?)<\/h2>/,'<h1>$1</h1>');
+ if(i&&p.url!=='/concepts')body=body.replace(/<h2>([\s\S]*?)<\/h2>/,'<h1>$1</h1>');
  let html=full.replace(/<main[^>]*>[\s\S]*?<\/main>/,`<main id="main" tabindex="-1">${body}${pager}</main>`).replace(/<nav[\s\S]*?<\/nav>/,nav).replace('<title>Yvel’s Staircase — Progress & Next Visit</title>',`<title>${p.title} — Yvel’s Staircase</title>`).replace('href="#top"><svg','href="/"><svg');
+ if(p.url==='/concepts')html=html.replace('</head>','<link rel="stylesheet" href="/gallery.css"><script type="module" src="/gallery.js"></script></head>');
  await fs.writeFile(path.join(root,'dist',p.file),html);
 }
