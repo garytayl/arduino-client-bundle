@@ -13,7 +13,7 @@ function applyFilter(value,{updateUrl=false}={}){
   for(const button of filters)button.setAttribute('aria-pressed',String(button.dataset.filter===category));
   const current=cards.filter(card=>!card.hidden&&card.dataset.series==='current').length;
   const old=cards.filter(card=>!card.hidden&&card.dataset.series==='earlier').length;
-  document.querySelector('.concept-count').textContent=`${current} current concept${current===1?'':'s'}${earlier.open?` · ${old} earlier matching`:''}`;
+  document.querySelector('.concept-count').textContent=`${current} concept${current===1?'':'s'}${earlier.open?` · ${old} earlier matching`:''}`;
   document.querySelector('#concept-empty').hidden=current!==0;
   document.querySelector('#earlier-empty').hidden=old!==0;
   if(updateUrl){const url=new URL(location.href);if(category==='all')url.searchParams.delete('category');else url.searchParams.set('category',category);history.replaceState(history.state,'',url);}

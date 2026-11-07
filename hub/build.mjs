@@ -19,7 +19,7 @@ for(const file of ['ToF_Rainbow_Ripple_90_Smooth_v2.ino','Known_Good_ToF_LED_60_
  await fs.copyFile(path.join(root,'../bench/releases/2026-10-24',file),path.join(root,'dist/downloads',file));
 }
 const siteCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:path.join(root,'..')}).toString().trim();
-await fs.writeFile(path.join(root,'dist/site-version.json'),JSON.stringify({commit:siteCommit,checkpoint:'2026-10-24',currentFirmware:'ToF_Rainbow_Ripple_90_Smooth_v2.ino'},null,2));
+await fs.writeFile(path.join(root,'dist/site-version.json'),JSON.stringify({commit:siteCommit,checkpoint:'2026-11-07',hardwareStatus:'mux suspect; current operation unverified; interference diagnostic compiled, not uploaded',archivedFirmware:'ToF_Rainbow_Ripple_90_Smooth_v2.ino'},null,2));
 for(const v of data.versions){
   if(!/^[a-f0-9]{40}$/.test(v.commit)||!/^\w[\w.-]*\.ino$/.test(v.download))throw Error('Invalid version metadata');
   // Resolve each download from its pinned Git object, never from a moving working file.

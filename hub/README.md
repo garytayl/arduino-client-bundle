@@ -70,3 +70,14 @@ Installation estimates assume 15–18 steps, 28 cm tread, 18 cm riser, 90 cm lit
 The images are illustrative concepts, not measured installation plans, verified sensor coverage or electrical pin diagrams. Generated board pins, wire colors and annotations must not be used as electrical instructions. Outlet position, underside access and mounting dimensions remain unverified. Gary confirmed ten CQRobot VL53L1X sensors; two eight-channel muxes remain architecture, not installed inventory. Component inventory wording now distinguishes that update from the dated October 24 offers and the earlier one-sensor bench. No Home Assistant implementation is demonstrated by the gallery. Firmware, including the newer Smooth v2 release and recovery ZIP, is unchanged.
 
 Run `node hub/test-gallery.mjs` and `node hub/test-guide.mjs` with Playwright available in the local toolchain. Gallery QA checks all 13 caption/alt/series mappings, all 39 derivative hashes, thumbnail and enlarged-image decoding, filters, deep links, modal focus/keyboard/history, no-JavaScript fallback, six widths, visual captures, preserved guide pages and all six firmware/recovery downloads. Browser checks use a separate headless profile and do not access another task's browser.
+
+
+## November 7 evidence and cable-estimate update
+
+The existing public guide now distinguishes historical single-sensor/90-LED success from current unverified hardware. It records the user-reported isolated mux VIN–SDA/SCL/RST 0.0 Ω readings with observation limits and unproven cause; no scan today; compiled but not uploaded interference diagnostic; pending wiring review; approximate 80-LED count. The sensor carrier footprint is 28.5 × 23 mm. Saved 800/950 mm thresholds are not current settings or maximum range.
+
+The current direction is eight planned baseboard sensors and under-rail lighting. Cable quantities use the explicit one-end, equal-spacing model: 56 ft 8 in bare + eight 1 ft service allowances, then 15%, giving 74.37 ft (about 75 ft) of four-conductor cable. Rounded per-sensor 1/3/5/7/9/11/13/15 ft figures exclude the aggregate spare and controller approach. These are not cut lengths or electrical qualification.
+
+The LeMotech B07F3X2ZZ9 box is a candidate only: 60 × 36 × 17 mm outside, nominal 55 × 31 × 12 mm inside with stated tolerance; connector fit, optical aperture and cable entry unverified. Price and stock are not known.
+
+This update uses only already-public assets plus non-photo schematic markup. Unpublished home photos and photo-derived concepts are excluded from this public source/deployment. The separate prior local photo work remains untouched. Original firmware, all six downloadable sources/recovery files, and the 13 published concept images remain unchanged.
