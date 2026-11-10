@@ -25,3 +25,11 @@ const map={'HW870_Sensor_Bench_v1.ino':'HW870_Sensor_Bench_v1/HW870_Sensor_Bench
 for(const [file,source] of Object.entries(map))assert.equal(sha(await fs.readFile(new URL('downloads/'+file,root))),sha(await fs.readFile(new URL('../bench/'+source,import.meta.url))));
 const manifest=JSON.parse(await fs.readFile(new URL('./content/concepts.json',import.meta.url),'utf8'));assert.equal(manifest.concepts.length,13);for(const c of manifest.concepts)for(const a of Object.values(c.assets))assert.equal(sha(await fs.readFile(new URL('images/concepts/'+a.file,root))),a.sha256);
 console.log('PASS current evidence, precise cable model, enclosure limits, all six download bytes and 39 historical image hashes');
+
+// Resolve the download linked by the page, then verify its displayed integrity value.
+const archivedLink=home.match(/href="([^"\s]*ToF_Rainbow_Ripple_90_Smooth_v2\.ino)"/);
+assert.ok(archivedLink,'Archived firmware download link must exist');
+const displayedHash=home.match(/Archived source SHA-256: ([a-f0-9]{64})<\/p>/);
+assert.ok(displayedHash,'Archived checksum must be rendered, not a template token');
+assert.equal(displayedHash[1],sha(await fs.readFile(new URL(archivedLink[1].replace(/^\//,''),root))),'Displayed archived checksum must match the linked download bytes');
+console.log('PASS displayed archived SHA-256 matches the actual linked firmware download');

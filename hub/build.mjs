@@ -18,6 +18,8 @@ await fs.copyFile(path.join(root,'../bench/LED_Only_Bench_v1/LED_Only_Bench_v1.i
 for(const file of ['ToF_Rainbow_Ripple_90_Smooth_v2.ino','Known_Good_ToF_LED_60_2026_10_24.zip']){
  await fs.copyFile(path.join(root,'../bench/releases/2026-10-24',file),path.join(root,'dist/downloads',file));
 }
+// Hash the exact published bytes, not a manually transcribed historical digest.
+const archivedFirmwareHash=createHash('sha256').update(await fs.readFile(path.join(root,'dist/downloads/ToF_Rainbow_Ripple_90_Smooth_v2.ino'))).digest('hex');
 const siteCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:path.join(root,'..')}).toString().trim();
 await fs.writeFile(path.join(root,'dist/site-version.json'),JSON.stringify({commit:siteCommit,checkpoint:'2026-11-07',hardwareStatus:'mux suspect; current operation unverified; interference diagnostic compiled, not uploaded',archivedFirmware:'ToF_Rainbow_Ripple_90_Smooth_v2.ino'},null,2));
 for(const v of data.versions){
@@ -32,7 +34,7 @@ const notes=data.notes.map((n,i)=>`<article class="note"><span class="index">0${
 const benchPage=await fs.readFile(path.join(root,'src/bench.html'),'utf8');
 const ledPage=await fs.readFile(path.join(root,'src/led.html'),'utf8');
 const tofPage=await fs.readFile(path.join(root,'src/tof.html'),'utf8');
-await fs.writeFile(path.join(root,'dist/index.html'),template.replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replace('{{TOF}}',tofPage).replace('{{LED}}',ledPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
+await fs.writeFile(path.join(root,'dist/index.html'),template.replaceAll('{{ARCHIVED_FIRMWARE_SHA256}}',archivedFirmwareHash).replace('{{VERSIONS}}',versions.join('')).replace('{{NOTES}}',notes).replace('{{BENCH}}',benchPage).replace('{{TOF}}',tofPage).replace('{{LED}}',ledPage).replaceAll('{{VERIFIED}}',data.verifiedOn));
 for(const file of ['styles.css','guide.css','app.js','gallery.css','gallery.js','favicon.svg'])await fs.copyFile(path.join(root,'src',file),path.join(root,'dist',file));
 await fs.copyFile(path.join(root,'vercel.json'),path.join(root,'dist/vercel.json'));
 console.log(`Built static hub: ${data.versions.length} verified firmware revision; downloads preserve original bytes.`);
